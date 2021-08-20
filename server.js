@@ -13,9 +13,9 @@ const port=process.env.PORT || 3500;
 
 var con = mysql.createConnection({
   host: "www.db4free.net",
-  user: "myhashcode",
-  database : "myhashcode",
-  password: "rootroot"
+  user: "******",
+  database : "*****",
+  password: "*****"
 });
 
 con.connect(function(err) {
