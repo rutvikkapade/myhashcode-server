@@ -13,9 +13,9 @@ const port=process.env.PORT || 3500;
 
 var con = mysql.createConnection({
   host: "www.db4free.net",
-  user: "******",
-  database : "*****",
-  password: "*****"
+  user: "myhashcode",
+  database : "myhashcode",
+  password: "rootroot"
 });
 
 con.connect(function(err) {
@@ -77,7 +77,8 @@ res.json(result);
 }})
 
 app.get('/', (req, res) => {
-  res.send('<h2 style="font-family:sans-serif">server activated! visit the app : <a href="https://ecommerce-myhashcode.vercel.app">myHashCode.shop</a></h2><h3 style="font-family:sans-serif">If something does not load ,pls refresh the app since i am using free databse hosting and it can be slow at times</h3>');});
+res.sendFile('views/index.html', {root: __dirname });
+} );
 
 app.listen(port,()=>{
 console.log("ecommerce server started !");
