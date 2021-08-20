@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-const port=3500;
+const port=process.env.PORT || 3500;
 
 var con = mysql.createConnection({
   host: "www.db4free.net",
