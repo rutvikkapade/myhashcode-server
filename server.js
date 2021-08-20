@@ -77,7 +77,7 @@ res.json(result);
 }})
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('server activated! visit the app : https://ecommerce-myhashcode.vercel.app')
 });
 
 app.listen(port,()=>{
