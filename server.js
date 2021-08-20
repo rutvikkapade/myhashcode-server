@@ -25,15 +25,18 @@ app.get('/getCategories',async(req,res)=>{
     if (err) throw err;
     console.log("Connected!");
   });
+  var data;
 con.query('Select * from category',(error,result)=>{
 if(error){
 console.log(error);
 }else{
 console.log(result);
-con.end();
-res.json(result);
+data=result;
+
 }
 });
+con.end();
+res.json(data);
 })
 
 app.post('/getProductType',(req,res)=>{
@@ -45,10 +48,11 @@ con.query('select * from product_type where category_name="'+req.body.category+'
 if(error){
  res.status(500).send('Something broke!');
 }else{
-con.end();
-res.json(result);
+data=result;
 }
 })
+con.end();
+res.json(data);
 })
 
 app.post('/sendData',(req,res)=>{
@@ -56,16 +60,20 @@ app.post('/sendData',(req,res)=>{
     if (err) throw err;
     console.log("Connected!");
   });
+  var data=null;
 con.query('INSERT INTO products (name, price,productImg,productType,brand) VALUES ("'+req.body.productName+'",'+req.body.productPrice+',"'+req.body.imageUrl+'","'+req.body.productType+'","'+req.body.productBrand+'");',(err,result)=>{
 if(err){
 console.log(err);
-con.end()
-res.status(501).send('Not Implemented!');
-}else{
-  con.end();
-res.status(200).send('Inserted Record!');
 }
 });
+con.end();
+if(data==null){
+  con.end();
+  res.status(501).send('Not Implemented!');
+}else{
+  con.end();
+  res.status(200).send('Inserted Record!');
+}
 
 });
 
@@ -74,25 +82,23 @@ app.post('/getProducts',(req,res)=>{
     if (err) throw err;
     console.log("Connected!");
   });
+  var data;
 if(req.body.data=='All'){
 con.query('select * from products inner join product_type on products.productType=product_type.product_type_name;',(err,result)=>{
 if(err){
-  con.end();
 console.log(err);
 }else{
-  con.end();
-res.json(result);
+  data=result;
 }
 })}else{
 con.query('select * from products inner join product_type on products.productType=product_type.product_type_name where product_type.category_name="'+req.body.data+'";',(err,result)=>{
 if(err){
-  con.end()
 console.log(err);
 }else{
-  con.end();
-res.json(result);
+  data=result;
 }})
-
+con.end();
+res.json(data);
 
 }})
 
