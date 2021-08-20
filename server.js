@@ -77,8 +77,7 @@ res.json(result);
 }})
 
 app.get('/', (req, res) => {
-  res.send('<h2>server activated! visit the app : <a href="https://ecommerce-myhashcode.vercel.app">myHashCode.shop</a></h2>')
-});
+  res.send('<h2 style="font-family:sans-serif">server activated! visit the app : <a href="https://ecommerce-myhashcode.vercel.app">myHashCode.shop</a></h2><h3 style="font-family:sans-serif">If something does not load ,pls refresh the app since i am using free databse hosting and it can be slow at times</h3>');});
 
 app.listen(port,()=>{
 console.log("ecommerce server started !");
